@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <title>Shark App</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Roboto:ital,wght@1,100;1,300&family=Rubik+Dirt&display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        html,
+        body {
+            height: 100%;
+        }
+        
+        .sidebar {
+            height: 100%;
+            background-color: rgb(252, 248, 248);
+            width: 250px;
+            top: 0;
+            left: 0;
+            padding: 15px 0 0 30px;
+            position: fixed;
+        }
+        
+        .inbox {
+            border-right: 1px solid grey;
+            /*вынести в переменную*/
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(to top, rgb(224, 223, 223), rgb(250, 248, 248));
+            padding: 20px 0 0 30px;
+            position: fixed;
+        }
+        
+        main {
+            height: 100%;
+            display: flex;
+            position: absolute;
+            left: 250px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo__image {
+            color: rgb(50, 9, 117);
+            font-size: 3rem;
+        }
+        
+        .logo__name {
+            margin-left: 15px;
+        }
+        
+        .menu__subtitle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 60%;
+        }
+        
+        .subtitle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 100%;
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        .subtitle__item {
+            display: flex;
+            align-items: center;
+            height: calc(100% / 6);
+            width: 200px;
+        }
+        
+        .sidebar__icon {
+            color: gray;
+            padding-left: 5px;
+            font-size: large;
+            font-size: 1.5em;
+        }
+        
+        .sidebar__icon--blue {
+            color: blue;
+            font-weight: bolder;
+            font-size: 1.5em;
+        }
+        
+        .item__name--blue {
+            color: blue;
+            font-weight: bolder;
+            font-size: 1.5em;
+        }
+        
+        .item__name {
+            font-size: 1rem;
+            padding-left: 10px;
+        }
+        
+        .item--active {
+            background: rgb(245, 244, 244);
+            margin-right: 0;
+            width: 220px;
+            border-right: solid orange;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            padding: 10px;
+        }
+        
+        .item__name {
+            box-sizing: border-box;
+            margin-left: 5px;
+            justify-content: space-between;
+            width: 190px;
+        }
+        
+        .menu__project {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 30%;
+        }
+        
+        .project__name {
+            font-size: medium;
+            font-weight: bolder;
+        }
+        
+        .project {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        .project__subtitle {
+            height: 35%;
+            display: flex;
+            flex-direction: column;
+            font-weight: bold;
+        }
+        
+        .project__item {
+            height: calc(100% / 4);
+            align-items: center;
+            display: flex;
+            margin-top: 5px;
+            justify-content: space-between;
+        }
+        
+        .project__icon--orange {
+            color: rgb(182, 116, 31);
+            font-size: 1.5em;
+            font-weight: bolder;
+        }
+        
+        .project__icon--blue {
+            color: rgb(77, 77, 168);
+            font-size: 1.5em;
+        }
+        
+        .project__icon--violet {
+            color: rgb(65, 40, 65);
+            font-size: 1.5em;
+        }
+        
+        .project__icon--green {
+            color: rgb(43, 88, 43);
+            font-size: 1.5em;
+        }
+        
+        .menu__bottom {
+            height: 5%;
+            width: 83px;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .sidebar__bottom {
+            height: 25px;
+            border-radius: 5px;
+            background: rgb(252, 249, 249);
+            padding: 4px;
+            border: solid gray;
+            width: 86px;
+        }
+        
+        .inbox__title {
+            margin: 10px 10px 0 10px;
+            align-items: center;
+        }
+        
+        .general_section {
+            background: lightgray;
+            margin: 5px;
+            justify-content: space-between;
+            border-radius: 8px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 3px 0 3px;
+        }
+        
+        .general__bottom {
+            height: 80%;
+            padding: 3px;
+            background: white;
+            border-radius: 6px;
+            width: 50%;
+        }
+        
+        .name__bottom {
+            align-items: center;
+        }
+        
+        .total__bottom {
+            height: 80%;
+            width: 50%;
+            padding: 3px;
+        }
+        
+        .massage__review {
+            height: 70%;
+            display: flex;
+            margin-top: 30px;
+        }
+        
+        .message {
+            border-radius: 12px;
+            height: calc(100% / 7);
+            margin-top: 5px;
+            border-radius: 5px;
+            display: flex;
+            padding: 5px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .sender {
+            width: 250px;
+            background-color: rgb(184, 245, 245);
+            border-radius: 10px;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .sender__avatar {
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            margin: 2px 2px 2px 0;
+            align-items: center;
+            font-size: 1.5em;
+            display: flex;
+        }
+        
+        .name__sender {
+            padding-left: 10px;
+            align-items: center;
+            justify-content: space-evenly;
+            font-weight: bold;
+        }
+        
+        .chat {
+            height: 100%;
+        }
+        
+        .open__dialog {
+            height: 20%;
+            border-bottom: solid gray;
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            padding-left: 10px;
+        }
+        
+        .panel {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="las la-cube logo__image"></i>
+            <h2 class="logo__name">Shark</h2>
+        </div>
+        <div class="menu__subtitle">
+            <ul class="subtitle">
+                <li class="subtitle__item">
+                    <i class="las la-layer-group sidebar__icon"></i>
+                    <h5 class="item__name">Dashboard</h5>
+                </li>
+                <li class="subtitle__item">
+                    <i class="las la-chart-bar sidebar__icon"></i>
+                    <h5 class="item__name">Statistic</h5>
+                </li>
+                <li class="subtitle__item">
+                    <i class="las la-comment-alt sidebar__icon"></i>
+                    <h5 class="item__name">Support</h5>
+                </li>
+                <li class="subtitle__item item--active">
+                    <i class="las la-comments sidebar__icon--blue"></i>
+                    <h5 class="item__name--blue">Inbox</h5>
+                </li>
+                <li class="subtitle__item">
+                    <i class="las la-rocket sidebar__icon"></i>
+                    <h5 class="item__name">Goals</h5>
+                </li>
+                <li class="subtitle__item">
+                    <i class="las la-link sidebar__icon"></i>
+                    <h5 class="item__name">Links</h5>
+                </li>
+            </ul>
+        </div>
+        <div class="menu__project">
+            <div class="project">
+                <h6 class="project__name">PROJECT</h6>
+            </div>
+            <ul class="progect__subtitle">
+                <li class="project__item">
+                    <i class="las la-circle-notch project__icon--orange"></i>
+                    <h5 class="item__name">Callipso</h5>
+                </li>
+                <li class="project__item">
+                    <i class="las la-circle-notch project__icon--blue"></i>
+                    <h5 class="item__name">BWS bank</h5>
+                </li>
+                <li class="project__item">
+                    <i class="las la-circle-notch project__icon--violet"></i>
+                    <h5 class="item__name">Unicorn app</h5>
+                </li>
+                <li class="project__item">
+                    <i class="las la-circle-notch project__icon--green"></i>
+                    <h5 class="item__name">Salt</h5>
+                </li>
+            </ul>
+        </div>
+        <div class="menu__bottom">
+            <h5 class="sidebar__bottom">Show more</h5>
+        </div>
+        </nav>
+    </aside>
+    <main>
+        <div class="inbox">
+            <h1 class="inbox__name">Inbox</h1>
+
+            <nav class="inbox__title">
+                <ul class="general_section">
+                    <li class="general__bottom">
+                        <h3 class="name__bottom">General</h3>
+                    </li>
+                    <li class="total__bottom">
+                        <h3 class="name__bottom">Total</h3>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="message__review">
+                <ul class="message">
+                    <li class="sender">
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="sender__info">
+                        <h5 class="name__sender">Michael.B</h5>
+                    </span>
+                        <span class="sender__position">
+                        <h6 class="sender__function">Project manager</h6>
+                    </span>
+                        <span class="sender__message">
+                        <h6 class="income__message">Send you the file</h6>
+                    </span>
+                    </li>
+                </ul>
+                <ul class="message">
+                    <li class="sender">
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="sender__info">
+                        <h5 class="name__sender">Katie.W</h5>
+                    </span>
+                        <span class="sender__position">
+                        <h6 class="sender__function">Middle designer</h6>
+                    </span>
+                        <span class="sender__message">
+                        <h6 class="income__message">Send you tomorrow...</h6>
+                    </span>
+                    </li>
+                </ul>
+                <ul class="message">
+                    <li class="sender">
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="sender__info">
+                        <h5 class="name__sender">Arnold.J</h5>
+                    </span>
+                        <span class="sender__position">
+                        <h6 class="sender__function">UI designer</h6>
+                    </span>
+                        <span class="sender__message">
+                        <h6 class="income__message">Hi.I checked the layout agai...</h6>
+                    </span>
+                    </li>
+                </ul>
+                <ul class="message">
+                    <li class="sender">
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="sender__info">
+                        <h5 class="name__sender">Fannie.K</h5>
+                    </span>
+                        <span class="sender__position">
+                        <h6 class="sender__function">HR manager</h6>
+                    </span>
+                        <span class="sender__message">
+                        <h6 class="income__message">okay!</h6>
+                    </span>
+                    </li>
+                </ul>
+                <ul class="message">
+                    <li class="sender">
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="sender__info">
+                        <h5 class="name__sender">Isaac.A</h5>
+                    </span>
+                        <span class="sender__position">
+                        <h6 class="sender__function">SMM manager</h6>
+                    </span>
+                        <span class="sender__message">
+                        <h6 class="income__message">I dont think we're going to finish...</h6>
+                    </span>
+                    </li>
+                </ul>
+                <ul class="message">
+                    <li class="sender">
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="sender__info">
+                        <h5 class="name__sender">Jacob</h5>
+                    </span>
+                        <span class="sender__position">
+                        <h6 class="sender__function">UX Designer</h6>
+                    </span>
+                        <span class="sender__message">
+                        <h6 class="income__message">Sorry,Friend.I want do it again!</h6>
+                    </span>
+                    </li>
+                </ul>
+                <ul class="message"></ul>
+                </nav>
+            </div>
+        </div>
+        </div>
+        <div class="chat">
+            <div class="open__dialog">
+                <span class="sender__line">
+                    <img src="https://via.placeholder.com/150" alt="" class="sender__avatar income">
+                    <h6 class="name__sender">Michael.B</h6>
+                    <h6 class="Online__status">Online</h6>
+                    <ul class="search__icon">
+                        <h6 class="bottom__search">Bri  </h6>
+                        <i class="las la-search"></i>   
+                    </ul>
+                    <i class="las la-microphone"></i>
+                    <i class="las la-camera"></i>
+                </span>
+                <span class="open__message">
+                    <h5 class="date">july 29,Tuesday</h5>
+                    <a class="time__incom"></a>
+                </span>
+
+            </div>
+        </div>
+        <div class="panel"></div>
+
+    </main>
+</body>
+
+</html>
