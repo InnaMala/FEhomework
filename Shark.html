@@ -84,9 +84,17 @@
         
         .subtitle__item {
             display: flex;
+            justify-content: center;
             align-items: center;
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .subtitle__link {
+            display: flex;
+            align-items: center;
+            border-radius: 10px 0 0 10px;
             height: calc(100% / 6);
-            width: 200px;
         }
         
         .sidebar__icon {
@@ -305,29 +313,41 @@
         </div>
         <div class="menu__subtitle">
             <ul class="subtitle">
-                <li class="subtitle__item">
-                    <i class="las la-layer-group sidebar__icon"></i>
-                    <h5 class="item__name">Dashboard</h5>
+                <li class="subtitle__link">
+                    <a href class="subtitle__item">
+                        <i class="las la-layer-group sidebar__icon"></i>
+                        <h5 class="item__name">Dashboard</h5>
+                    </a>
                 </li>
-                <li class="subtitle__item">
-                    <i class="las la-chart-bar sidebar__icon"></i>
-                    <h5 class="item__name">Statistic</h5>
+                <li class="subtitle__link">
+                    <a href class="subtitle__item">
+                        <i class="las la-chart-bar sidebar__icon"></i>
+                        <h5 class="item__name">Statistic</h5>
+                    </a>
                 </li>
-                <li class="subtitle__item">
-                    <i class="las la-comment-alt sidebar__icon"></i>
-                    <h5 class="item__name">Support</h5>
+                <li class="subtitle__link">
+                    <a href class="subtitle__item">
+                        <i class="las la-comment-alt sidebar__icon"></i>
+                        <h5 class="item__name">Support</h5>
+                    </a>
                 </li>
-                <li class="subtitle__item item--active">
-                    <i class="las la-comments sidebar__icon--blue"></i>
-                    <h5 class="item__name--blue">Inbox</h5>
+                <li class="subtitle__link">
+                    <a href class="subtitle__item item--active">
+                        <i class="las la-comments sidebar__icon--blue"></i>
+                        <h5 class="item__name--blue">Inbox</h5>
+                    </a>
                 </li>
-                <li class="subtitle__item">
-                    <i class="las la-rocket sidebar__icon"></i>
-                    <h5 class="item__name">Goals</h5>
+                <li class="subtitle__link">
+                    <a href class="subtitle__item">
+                        <i class="las la-rocket sidebar__icon"></i>
+                        <h5 class="item__name">Goals</h5>
+                    </a>
                 </li>
-                <li class="subtitle__item">
-                    <i class="las la-link sidebar__icon"></i>
-                    <h5 class="item__name">Links</h5>
+                <li class="subtitle__link">
+                    <a href class="subtitle__item">
+                        <i class="las la-link sidebar__icon"></i>
+                        <h5 class="item__name">Links</h5>
+                    </a>
                 </li>
             </ul>
         </div>
