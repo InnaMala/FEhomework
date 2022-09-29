@@ -14,6 +14,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            list-style: none;
         }
         
         body {
@@ -23,12 +24,13 @@
         html,
         body {
             height: 100%;
+            width: 100%;
         }
         
         .sidebar {
             height: 100%;
             background-color: rgb(252, 248, 248);
-            width: 250px;
+            width: 19%;
             top: 0;
             left: 0;
             padding: 15px 0 0 30px;
@@ -37,12 +39,18 @@
         
         .inbox {
             border-right: 1px solid grey;
-            /*вынести в переменную*/
             width: 300px;
             height: 100%;
-            background: linear-gradient(to top, rgb(224, 223, 223), rgb(250, 248, 248));
-            padding: 20px 0 0 30px;
+            background: linear-gradient(to top, rgb(206, 204, 204), rgb(250, 248, 248));
             position: fixed;
+            overflow-y: scroll;
+        }
+        
+        .chat {
+            height: 100%;
+            width: 80%;
+            border-right: 1px solid grey;
+            background: linear-gradient(to right top, rgb(146, 144, 144), rgb(250, 248, 248));
         }
         
         main {
@@ -50,6 +58,7 @@
             display: flex;
             position: absolute;
             left: 250px;
+            width: 81%;
         }
         
         .logo {
@@ -78,7 +87,6 @@
             flex-direction: column;
             justify-content: space-evenly;
             height: 100%;
-            list-style: none;
             margin-top: 10px;
         }
         
@@ -210,28 +218,57 @@
             width: 86px;
         }
         
+        .inbox__list {
+            height: 20%;
+            margin: 10px;
+        }
+        
         .inbox__title {
-            margin: 10px 10px 0 10px;
+            margin: 20px 10px 0 10px;
             align-items: center;
+            height: 40%;
+        }
+        
+        .inbox__block {
+            display: flex;
+            justify-content: space-between;
+            font-size: large;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        .inbox__bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 1.5em;
         }
         
         .general_section {
-            background: lightgray;
+            background: rgb(241, 239, 239);
             margin: 5px;
             justify-content: space-between;
             border-radius: 8px;
-            height: 30px;
+            height: 40px;
             display: flex;
             align-items: center;
             padding: 0 3px 0 3px;
         }
         
-        .general__bottom {
+        .general__bottom--left {
             height: 80%;
-            padding: 3px;
+            padding-left: 30px;
             background: white;
             border-radius: 6px;
             width: 50%;
+            padding-top: 5px;
+        }
+        
+        .general__bottom--rigt {
+            padding-right: 30px;
         }
         
         .name__bottom {
@@ -245,29 +282,41 @@
         }
         
         .massage__review {
-            height: 70%;
+            height: 80%;
+            width: 100%;
             display: flex;
             margin-top: 30px;
+            padding: 10px;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: column;
         }
         
         .message {
-            border-radius: 12px;
-            height: calc(100% / 7);
             margin-top: 5px;
-            border-radius: 5px;
+            border-radius: 15px;
             display: flex;
-            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
             align-items: center;
             justify-content: space-between;
+            width: 100%;
         }
         
         .sender {
-            width: 250px;
-            background-color: rgb(184, 245, 245);
-            border-radius: 10px;
-            justify-content: space-around;
+            width: 1000px;
+            height: 80px;
+            background-color: rgb(247, 247, 247);
+            border-radius: 15px;
+            justify-content: space-between;
             align-items: center;
+            display: flex;
+            padding-left: 5px;
+            padding-right: 5px;
         }
+        /* .avatar {
+            position: relative;
+        }*/
         
         .sender__avatar {
             border-radius: 10px;
@@ -276,18 +325,31 @@
             margin: 2px 2px 2px 0;
             align-items: center;
             font-size: 1.5em;
-            display: flex;
+            position: relative;
+        }
+        
+        .figure {
+            margin: 0;
+            line-height: 0;
+            width: 100px;
+            aspect-ratio: 1;
+            position: relative;
         }
         
         .name__sender {
-            padding-left: 10px;
-            align-items: center;
-            justify-content: space-evenly;
-            font-weight: bold;
+            font-size: 1em;
         }
         
-        .chat {
-            height: 100%;
+        .sender__info {
+            padding-left: 5px;
+            display: block;
+            width: 80%;
+        }
+        
+        .sender__function {
+            padding-top: 2px;
+            color: rgb(158, 158, 158);
+            padding-bottom: 5px;
         }
         
         .open__dialog {
@@ -297,6 +359,17 @@
             justify-content: space-between;
             width: 200px;
             padding-left: 10px;
+        }
+        
+        .online {
+            background-color: rgb(3, 121, 56);
+            width: 16px;
+            aspect-ratio: 1;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            border-radius: 50%;
+            border: 4px solid #fff;
         }
         
         .panel {
@@ -381,100 +454,113 @@
     </aside>
     <main>
         <div class="inbox">
-            <h1 class="inbox__name">Inbox</h1>
-
-            <nav class="inbox__title">
-                <ul class="general_section">
-                    <li class="general__bottom">
-                        <h3 class="name__bottom">General</h3>
-                    </li>
-                    <li class="total__bottom">
-                        <h3 class="name__bottom">Total</h3>
-                    </li>
-                </ul>
-            </nav>
-
+            <div class="inbox__list">
+                <nav class="inbox__block">
+                    <h1 class="inbox__name">Inbox</h1>
+                    <nav class="inbox__bottom">
+                        <i class="lar la-plus-square"></i>
+                    </nav>
+                </nav>
+                <nav class="inbox__title">
+                    <ul class="general_section">
+                        <li class="general__bottom--left">
+                            <h3 class="name__bottom">General</h3>
+                        </li>
+                        <li class="general__bottom--rigt">
+                            <h3 class="name__bottom">Total</h3>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             <div class="message__review">
                 <ul class="message">
                     <li class="sender">
-                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="avatar">
+                            <figure>
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar" />
+                        <span class="online"></span>
+                        </figure>
+                        </span>
+
                         <span class="sender__info">
                         <h5 class="name__sender">Michael.B</h5>
-                    </span>
-                        <span class="sender__position">
                         <h6 class="sender__function">Project manager</h6>
-                    </span>
-                        <span class="sender__message">
                         <h6 class="income__message">Send you the file</h6>
-                    </span>
+                        </span>
                     </li>
                 </ul>
                 <ul class="message">
                     <li class="sender">
+                        <span class="avatar">
+                            <figure>
                         <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="online"></span>
+                        </figure>
+                        </span>
+
                         <span class="sender__info">
                         <h5 class="name__sender">Katie.W</h5>
-                    </span>
-                        <span class="sender__position">
                         <h6 class="sender__function">Middle designer</h6>
-                    </span>
-                        <span class="sender__message">
                         <h6 class="income__message">Send you tomorrow...</h6>
                     </span>
                     </li>
                 </ul>
                 <ul class="message">
                     <li class="sender">
+                        <span class="avatar">
+                            <figure>
                         <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <!--<span class="online"></span> -->
+                        </figure>
+                        </span>
                         <span class="sender__info">
                         <h5 class="name__sender">Arnold.J</h5>
-                    </span>
-                        <span class="sender__position">
                         <h6 class="sender__function">UI designer</h6>
-                    </span>
-                        <span class="sender__message">
                         <h6 class="income__message">Hi.I checked the layout agai...</h6>
                     </span>
                     </li>
                 </ul>
                 <ul class="message">
                     <li class="sender">
-                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <span class="avatar">
+                            <figure>
+                        <img src="https://via.placeholder.com/150" alt="" class="sender__avatar" />
+                        <!--<span class="online"></span>-->
+                        </figure>
+                        </span>
                         <span class="sender__info">
                         <h5 class="name__sender">Fannie.K</h5>
-                    </span>
-                        <span class="sender__position">
                         <h6 class="sender__function">HR manager</h6>
-                    </span>
-                        <span class="sender__message">
                         <h6 class="income__message">okay!</h6>
                     </span>
                     </li>
                 </ul>
                 <ul class="message">
                     <li class="sender">
+                        <span class="avatar">
+                            <figure>
                         <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <!--<span class="online"></span>-->
+                        </figure>
+                        </span>
                         <span class="sender__info">
                         <h5 class="name__sender">Isaac.A</h5>
-                    </span>
-                        <span class="sender__position">
                         <h6 class="sender__function">SMM manager</h6>
-                    </span>
-                        <span class="sender__message">
                         <h6 class="income__message">I dont think we're going to finish...</h6>
                     </span>
                     </li>
                 </ul>
                 <ul class="message">
                     <li class="sender">
+                        <span class="avatar">
+                            <figure>
                         <img src="https://via.placeholder.com/150" alt="" class="sender__avatar">
+                        <!--<span class="online"></span>-->
+                        </figure>
+                        </span>
                         <span class="sender__info">
                         <h5 class="name__sender">Jacob</h5>
-                    </span>
-                        <span class="sender__position">
                         <h6 class="sender__function">UX Designer</h6>
-                    </span>
-                        <span class="sender__message">
                         <h6 class="income__message">Sorry,Friend.I want do it again!</h6>
                     </span>
                     </li>
@@ -485,7 +571,7 @@
         </div>
         </div>
         <div class="chat">
-            <div class="open__dialog">
+            <nav class="open__dialog">
                 <span class="sender__line">
                     <img src="https://via.placeholder.com/150" alt="" class="sender__avatar income">
                     <h6 class="name__sender">Michael.B</h6>
@@ -502,8 +588,9 @@
                     <a class="time__incom"></a>
                 </span>
 
-            </div>
+            </nav>
         </div>
+
         <div class="panel"></div>
 
     </main>
